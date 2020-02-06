@@ -52,7 +52,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {
             "get": {
@@ -77,7 +77,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -105,7 +105,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -141,7 +141,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -169,7 +169,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -197,7 +197,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -233,7 +233,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -259,11 +259,11 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Not Decorated",
-                "operationId": "get_not_decorated_items-not-decorated__item_id__get",
+                "operationId": "get_not_decorated_items_not_decorated__item_id__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }

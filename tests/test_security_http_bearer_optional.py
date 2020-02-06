@@ -11,7 +11,7 @@ security = HTTPBearer(auto_error=False)
 
 @app.get("/users/me")
 def read_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(security)
+    credentials: Optional[HTTPAuthorizationCredentials] = Security(security),
 ):
     if credentials is None:
         return {"msg": "Create an account first"}
@@ -22,7 +22,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/users/me": {
             "get": {

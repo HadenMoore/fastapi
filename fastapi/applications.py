@@ -15,6 +15,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.utils import warning_response_model_skip_defaults_deprecated
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import ExceptionMiddleware, HTTPException
@@ -31,7 +32,7 @@ class FastAPI(Starlette):
         debug: bool = False,
         routes: List[BaseRoute] = None,
         template_directory: str = None,
-        title: str = "Fast API",
+        title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
@@ -159,11 +160,14 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
     ) -> None:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         self.router.add_api_route(
             path,
             endpoint=endpoint,
@@ -181,7 +185,9 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -205,11 +211,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
+
         def decorator(func: Callable) -> Callable:
             self.router.add_api_route(
                 path,
@@ -228,7 +238,9 @@ class FastAPI(Starlette):
                 response_model_include=response_model_include,
                 response_model_exclude=response_model_exclude,
                 response_model_by_alias=response_model_by_alias,
-                response_model_skip_defaults=response_model_skip_defaults,
+                response_model_exclude_unset=bool(
+                    response_model_exclude_unset or response_model_skip_defaults
+                ),
                 include_in_schema=include_in_schema,
                 response_class=response_class or self.default_response_class,
                 name=name,
@@ -286,11 +298,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.get(
             path,
             response_model=response_model,
@@ -306,10 +322,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def put(
@@ -329,11 +348,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.put(
             path,
             response_model=response_model,
@@ -349,10 +372,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def post(
@@ -372,11 +398,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.post(
             path,
             response_model=response_model,
@@ -392,10 +422,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def delete(
@@ -415,11 +448,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.delete(
             path,
             response_model=response_model,
@@ -435,10 +472,13 @@ class FastAPI(Starlette):
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
             operation_id=operation_id,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def options(
@@ -458,11 +498,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.options(
             path,
             response_model=response_model,
@@ -478,10 +522,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def head(
@@ -501,11 +548,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.head(
             path,
             response_model=response_model,
@@ -521,10 +572,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def patch(
@@ -544,11 +598,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.patch(
             path,
             response_model=response_model,
@@ -564,10 +622,13 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def trace(
@@ -587,11 +648,15 @@ class FastAPI(Starlette):
         response_model_include: Union[SetIntStr, DictIntStrAny] = None,
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = False,
+        response_model_skip_defaults: bool = None,
+        response_model_exclude_unset: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_skip_defaults is not None:
+            warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.trace(
             path,
             response_model=response_model,
@@ -607,8 +672,11 @@ class FastAPI(Starlette):
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            response_model_skip_defaults=response_model_skip_defaults,
+            response_model_exclude_unset=bool(
+                response_model_exclude_unset or response_model_skip_defaults
+            ),
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )

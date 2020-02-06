@@ -44,7 +44,6 @@ Let's say you have a file structure like this:
 * The file `app/routers/users.py` is beside the `app/routers/__init__.py`.
     * So, it's a submodule: `app.routers.users`.
 
-
 ## `APIRouter`
 
 Let's say the file dedicated to handling just users is the submodule at `/app/routers/users.py`.
@@ -55,7 +54,6 @@ But it's still part of the same **FastAPI** application/web API (it's part of th
 
 You can create the *path operations* for that module using `APIRouter`.
 
-
 ### Import `APIRouter`
 
 You import it and create an "instance" the same way you would with the class `FastAPI`:
@@ -64,8 +62,7 @@ You import it and create an "instance" the same way you would with the class `Fa
 {!./src/bigger_applications/app/routers/users.py!}
 ```
 
-
-### Path operations with `APIRouter`
+### *Path operations* with `APIRouter`
 
 And then you use it to declare your *path operations*.
 
@@ -86,12 +83,11 @@ All the same parameters, responses, dependencies, tags, etc.
 
 We are going to include this `APIrouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
 
-
 ## Another module with `APIRouter`
 
 Let's say you also have the endpoints dedicated to handling "Items" from your application in the module at `app/routers/items.py`.
 
-You have path operations for:
+You have *path operations* for:
 
 * `/items/`
 * `/items/{item_id}`
@@ -144,7 +140,6 @@ We import the other submodules that have `APIRouter`s:
 
 As the file `app/routers/items.py` is part of the same Python package, we can import it using "dot notation".
 
-
 ### How the importing works
 
 The section:
@@ -172,7 +167,7 @@ from app.routers import items, users
 
     The second version is an "absolute import".
 
-    To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">the official Python documentation about Modules</a>.
+    To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.
 
 ### Avoid name collisions
 
@@ -228,9 +223,9 @@ Now, let's include the router from the `items` submodule.
 
 But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
 
-We can add a prefix to all the path operations using the parameter `prefix` of `app.include_router()`.
+We can add a prefix to all the *path operations* using the parameter `prefix` of `app.include_router()`.
 
-As the path of each path operation has to start with `/`, like in:
+As the path of each *path operation* has to start with `/`, like in:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
@@ -246,7 +241,7 @@ We can also add a list of `tags` that will be applied to all the *path operation
 
 And we can add predefined `responses` that will be included in all the *path operations* too.
 
-And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them.
+And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them. Note that, much like dependencies in *path operation decorators*, no value will be passed to your *path operation function*.
 
 ```Python hl_lines="8 9 10 14 15 16 17 18 19 20"
 {!./src/bigger_applications/app/main.py!}
@@ -266,8 +261,8 @@ The end result is that the item paths are now:
 * The *path operation* that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
 * All these *path operations* will have the list of `dependencies` evaluated/executed before them.
     * If you also declare dependencies in a specific *path operation*, **they will be executed too**.
-    * The router dependencies are executed first, then the <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-decorator/" target="_blank">`dependencies` in the decorator</a>, and then the normal parameter dependencies.
-    * You can also add <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">`Security` dependencies with `scopes`</a>.
+    * The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, and then the normal parameter dependencies.
+    * You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
 !!! tip
     Having `dependencies` in a decorator can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
@@ -276,7 +271,7 @@ The end result is that the item paths are now:
     The `prefix`, `tags`, `responses` and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
 !!! tip
-    You could also add path operations directly, for example with: `@app.get(...)`.
+    You could also add *path operations* directly, for example with: `@app.get(...)`.
 
     Apart from `app.include_router()`, in the same **FastAPI** app.
 
@@ -289,9 +284,9 @@ The end result is that the item paths are now:
 
     The `APIRouter`s are not "mounted", they are not isolated from the rest of the application.
 
-    This is because we want to include their path operations in the OpenAPI schema and the user interfaces.
+    This is because we want to include their *path operations* in the OpenAPI schema and the user interfaces.
 
-    As we cannot just isolate them and "mount" them independently of the rest, the path operations are "cloned" (re-created), not included directly.
+    As we cannot just isolate them and "mount" them independently of the rest, the *path operations* are "cloned" (re-created), not included directly.
 
 ## Check the automatic API docs
 
@@ -301,7 +296,7 @@ Now, run `uvicorn`, using the module `app.main` and the variable `app`:
 uvicorn app.main:app --reload
 ```
 
-And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:
 

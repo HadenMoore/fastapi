@@ -4,9 +4,9 @@ This client could be a browser with a frontend, the code from someone else, an I
 
 You could need to tell that client that:
 
-* He doesn't have enough privileges for that operation.
-* He doesn't have access to that resource.
-* The item he was trying to access doesn't exist.
+* The client doesn't have enough privileges for that operation.
+* The client doesn't have access to that resource.
+* The item the client was trying to access doesn't exist.
 * etc.
 
 In these cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).
@@ -33,7 +33,7 @@ To return HTTP responses with errors to the client you use `HTTPException`.
 
 Because it's a Python exception, you don't `return` it, you `raise` it.
 
-This also means that if you are inside a utility function that you are calling inside of your path operation function, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the path operation function, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
+This also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
@@ -82,7 +82,7 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 
 ## Install custom exception handlers
 
-You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
+You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
 
 Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 
@@ -156,7 +156,7 @@ path -> item_id
 !!! warning
     These are technical details that you might skip if it's not important for you now.
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" target="_blank">`ValidationError`</a>.
+`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
@@ -176,6 +176,47 @@ For example, you could want to return a plain text response instead of JSON for 
 {!./src/handling_errors/tutorial004.py!}
 ```
 
+### Use the `RequestValidationError` body
+
+The `RequestValidationError` contains the `body` it received with invalid data.
+
+You could use it while developing your app to log the body and debug it, return it to the user, etc.
+
+```Python hl_lines="16"
+{!./src/handling_errors/tutorial005.py!}
+```
+
+Now try sending an invalid item like:
+
+```JSON
+{
+  "title": "towel",
+  "size": "XL"
+}
+```
+
+You will receive a response telling you that the data is invalid containing the received body:
+
+```JSON hl_lines="13 14 15 16"
+{
+  "detail": [
+    {
+      "loc": [
+        "body",
+        "item",
+        "size"
+      ],
+      "msg": "value is not a valid integer",
+      "type": "type_error.integer"
+    }
+  ],
+  "body": {
+    "title": "towel",
+    "size": "XL"
+  }
+}
+```
+
 #### FastAPI's `HTTPException` vs Starlette's `HTTPException`
 
 **FastAPI** has its own `HTTPException`.
@@ -190,7 +231,7 @@ So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
 
 But when you register an exception handler, you should register it for Starlette's `HTTPException`.
 
-This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch handle it.
+This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch and handle it.
 
 In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:
 
@@ -205,9 +246,9 @@ You could also just want to use the exception somehow, but then use the same def
 You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
 ```Python hl_lines="2 3 4 5 15 21"
-{!./src/handling_errors/tutorial005.py!}
+{!./src/handling_errors/tutorial006.py!}
 ```
 
-In this example, you are just `print`ing the error with a very expressive notification.
+In this example, you are just `print`ing the error with a very expressive message.
 
 But you get the idea, you can use the exception and then just re-use the default exception handlers.

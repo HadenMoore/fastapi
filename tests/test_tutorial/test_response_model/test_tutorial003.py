@@ -6,7 +6,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/user/": {
             "post": {
@@ -52,7 +52,7 @@ openapi_schema = {
                 "properties": {
                     "username": {"title": "Username", "type": "string"},
                     "email": {"title": "Email", "type": "string", "format": "email"},
-                    "full_name": {"title": "Full_Name", "type": "string"},
+                    "full_name": {"title": "Full Name", "type": "string"},
                 },
             },
             "UserIn": {
@@ -63,7 +63,7 @@ openapi_schema = {
                     "username": {"title": "Username", "type": "string"},
                     "password": {"title": "Password", "type": "string"},
                     "email": {"title": "Email", "type": "string", "format": "email"},
-                    "full_name": {"title": "Full_Name", "type": "string"},
+                    "full_name": {"title": "Full Name", "type": "string"},
                 },
             },
             "ValidationError": {

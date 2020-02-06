@@ -6,7 +6,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/": {
             "get": {
@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Items_Items__Get",
+                                    "title": "Response Read Items Items  Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/Item"},
                                 }

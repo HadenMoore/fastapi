@@ -116,9 +116,9 @@ Again, doing just that declaration, with **FastAPI** you get:
 
 Apart from normal singular types like `str`, `int`, `float`, etc. You can use more complex singular types that inherit from `str`.
 
-To see all the options you have, checkout the docs for <a href="https://pydantic-docs.helpmanual.io/#exotic-types" target="_blank">Pydantic's exotic types</a>. You will see some examples in the next chapter.
+To see all the options you have, checkout the docs for <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic's exotic types</a>. You will see some examples in the next chapter.
 
-For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `UrlStr`:
+For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `HttpUrl`:
 
 ```Python hl_lines="4 10"
 {!./src/body_nested_models/tutorial005.py!}
@@ -231,7 +231,7 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
 
 ## Recap
 
-With **FastAPI** you have the maximum flexibility provided by Pydantic models, while keeping your code simple, short and elegant. 
+With **FastAPI** you have the maximum flexibility provided by Pydantic models, while keeping your code simple, short and elegant.
 
 But with all the benefits:
 

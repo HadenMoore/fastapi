@@ -6,7 +6,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/keyword-weights/": {
             "get": {
@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Keyword_Weights_Keyword-Weights__Get",
+                                    "title": "Response Read Keyword Weights Keyword Weights  Get",
                                     "type": "object",
                                     "additionalProperties": {"type": "number"},
                                 }
@@ -25,7 +25,7 @@ openapi_schema = {
                     }
                 },
                 "summary": "Read Keyword Weights",
-                "operationId": "read_keyword_weights_keyword-weights__get",
+                "operationId": "read_keyword_weights_keyword_weights__get",
             }
         }
     },

@@ -4,7 +4,7 @@ from events.tutorial001 import app
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {
             "get": {
@@ -29,7 +29,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }

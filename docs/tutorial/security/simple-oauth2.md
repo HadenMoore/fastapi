@@ -12,7 +12,7 @@ But don't worry, you can show it as you wish to your final users in the frontend
 
 And your database models can use any other names you want.
 
-But for the login path operation, we need to use these names to be compatible with the spec (and be able to, for example, use the integrated API documentation system).
+But for the login *path operation*, we need to use these names to be compatible with the spec (and be able to, for example, use the integrated API documentation system).
 
 The spec also states that the `username` and `password` must be sent as form data (so, no JSON here).
 
@@ -26,19 +26,18 @@ Each "scope" is just a string (without spaces).
 
 They are normally used to declare specific security permissions, for example:
 
-* `"users:read"` or `"users:write"` are common examples.
+* `users:read` or `users:write` are common examples.
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
 !!! info
     In OAuth2 a "scope" is just a string that declares a specific permission required.
 
-    It doesn't matter if it has other characters like `:`, or if it is a URL.
+    It doesn't matter if it has other characters like `:` or if it is a URL.
     
     Those details are implementation specific.
 
     For OAuth2 they are just strings.
-
 
 ## Code to get the `username` and `password`
 
@@ -69,11 +68,11 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 
 !!! info
     The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
-    
+
     `OAuth2PasswordBearer` makes **FastAPI** know that it is a security scheme. So it is added that way to OpenAPI.
-    
+
     But `OAuth2PasswordRequestForm` is just a class dependency that you could have written yourself, or you could have declared `Form` parameters directly.
-    
+
     But as it's a common use case, it is provided by **FastAPI** directly, just to make it easier.
 
 ### Use the form data
@@ -111,11 +110,11 @@ Whenever you pass exactly the same content (exactly the same password) you get e
 
 But you cannot convert from the gibberish back to the password.
 
-##### What for?
+##### Why use password hashing
 
 If your database is stolen, the thief won't have your users' plaintext passwords, only the hashes.
 
-So, the thief won't be able to try to use that password in another system (as many users use the same password everywhere, this would be dangerous).
+So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
 ```Python hl_lines="79 80 81 82"
 {!./src/security/tutorial003.py!}
@@ -124,7 +123,7 @@ So, the thief won't be able to try to use that password in another system (as ma
 #### About `**user_dict`
 
 `UserInDB(**user_dict)` means:
-    
+
 *Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:*
 
 ```Python
@@ -138,7 +137,7 @@ UserInDB(
 ```
 
 !!! info
-    For a more complete explanation of `**user_dict` check back in <a href="/tutorial/extra-models/#about-user_indict" target="_blank">the documentation for **Extra Models**</a>.
+    For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
 
 ## Return the token
 
@@ -201,7 +200,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 
 ## See it in action
 
-Open the interactive docs: <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Open the interactive docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 ### Authenticate
 

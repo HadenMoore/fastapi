@@ -7,7 +7,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {
             "put": {
@@ -33,7 +33,7 @@ openapi_schema = {
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "type": "string",
                             "format": "uuid",
                         },
@@ -60,22 +60,22 @@ openapi_schema = {
                 "type": "object",
                 "properties": {
                     "start_datetime": {
-                        "title": "Start_Datetime",
+                        "title": "Start Datetime",
                         "type": "string",
                         "format": "date-time",
                     },
                     "end_datetime": {
-                        "title": "End_Datetime",
+                        "title": "End Datetime",
                         "type": "string",
                         "format": "date-time",
                     },
                     "repeat_at": {
-                        "title": "Repeat_At",
+                        "title": "Repeat At",
                         "type": "string",
                         "format": "time",
                     },
                     "process_after": {
-                        "title": "Process_After",
+                        "title": "Process After",
                         "type": "number",
                         "format": "time-delta",
                     },

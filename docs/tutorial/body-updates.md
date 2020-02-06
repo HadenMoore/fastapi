@@ -1,6 +1,6 @@
 ## Update replacing with `PUT`
 
-To update an item you can use the [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) operation.
+To update an item you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> operation.
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
@@ -28,7 +28,7 @@ And the data would be saved with that "new" `tax` of `10.5`.
 
 ## Partial updates with `PATCH`
 
-You can also use the [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) operation to *partially* update data.
+You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to *partially* update data.
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 
@@ -41,15 +41,15 @@ This means that you can send only the data that you want to update, leaving the 
 
     But this guide shows you, more or less, how they are intended to be used.
 
-### Using Pydantic's `skip_defaults` parameter
+### Using Pydantic's `exclude_unset` parameter
 
-If you want to receive partial updates, it's very useful to use the parameter `skip_defaults` in Pydantic's model's `.dict()`.
+If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.dict()`.
 
-Like `item.dict(skip_defaults=True)`.
+Like `item.dict(exclude_unset=True)`.
 
 That would generate a `dict` with only the data that was set when creating the `item` model, excluding default values.
 
-Then you can use this to generate a `dict` with only the data that was set, omitting default values:
+Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
 
 ```Python hl_lines="34"
 {!./src/body_updates/tutorial002.py!}
@@ -72,7 +72,7 @@ In summary, to apply partial updates you would:
 * (Optionally) use `PATCH` instead of `PUT`.
 * Retrieve the stored data.
 * Put that data in a Pydantic model.
-* Generate a `dict` without default values from the input model (using `skip_defaults`).
+* Generate a `dict` without default values from the input model (using `exclude_unset`).
     * This way you can update only the values actually set by the user, instead of overriding values already stored with default values in your model.
 * Create a copy of the stored model, updating it's attributes with the received partial updates (using the `update` parameter).
 * Convert the copied model to something that can be stored in your DB (for example, using the `jsonable_encoder`).
@@ -94,4 +94,4 @@ In summary, to apply partial updates you would:
 
     So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
 
-    To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in <a href="https://fastapi.tiangolo.com/tutorial/extra-models/" target="_blank">Extra Models</a>.
+    To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md){.internal-link target=_blank}.

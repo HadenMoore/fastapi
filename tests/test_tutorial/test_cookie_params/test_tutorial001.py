@@ -7,7 +7,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/": {
             "get": {
@@ -32,7 +32,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Ads_Id", "type": "string"},
+                        "schema": {"title": "Ads Id", "type": "string"},
                         "name": "ads_id",
                         "in": "cookie",
                     }

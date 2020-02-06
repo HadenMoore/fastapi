@@ -1,4 +1,4 @@
-You can serve static files automatically from a directory using <a href="https://www.starlette.io/staticfiles/" target="_blank">Starlette's Static Files</a>.
+You can serve static files automatically from a directory using <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's Static Files</a>.
 
 ## Install `aiofiles`
 
@@ -11,13 +11,19 @@ pip install aiofiles
 ## Use `StaticFiles`
 
 * Import `StaticFiles` from Starlette.
-* "Mount" it the same way you would <a href="https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/" target="_blank">mount a Sub-Application</a>.
+* "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="2 6"
 {!./src/static_files/tutorial001.py!}
 ```
 
-Then you could have a directory `./static/` with some files that will be served directly.
+### What is "Mounting"
+
+"Mounting" means adding a complete "independent" application in a specific path, that then takes care of handling all the sub-paths.
+
+This is different from using an `APIRouter` as a mounted application is completely independent. The OpenAPI and docs from your main application won't include anything from the mounted application, etc.
+
+You can read more about this in the **Advanced User Guide**.
 
 ## Details
 
@@ -31,4 +37,4 @@ All these parameters can be different than "`static`", adjust them with the need
 
 ## More info
 
-For more details and options check <a href="https://www.starlette.io/staticfiles/" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

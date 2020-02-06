@@ -43,7 +43,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/login": {
             "post": {
@@ -99,15 +99,15 @@ openapi_schema = {
                 "type": "object",
                 "properties": {
                     "grant_type": {
-                        "title": "Grant_Type",
+                        "title": "Grant Type",
                         "pattern": "password",
                         "type": "string",
                     },
                     "username": {"title": "Username", "type": "string"},
                     "password": {"title": "Password", "type": "string"},
                     "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client_Id", "type": "string"},
-                    "client_secret": {"title": "Client_Secret", "type": "string"},
+                    "client_id": {"title": "Client Id", "type": "string"},
+                    "client_secret": {"title": "Client Secret", "type": "string"},
                 },
             },
             "ValidationError": {

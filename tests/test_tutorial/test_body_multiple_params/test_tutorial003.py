@@ -7,7 +7,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {
             "put": {
@@ -32,7 +32,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "integer"},
+                        "schema": {"title": "Item Id", "type": "integer"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -69,7 +69,7 @@ openapi_schema = {
                 "type": "object",
                 "properties": {
                     "username": {"title": "Username", "type": "string"},
-                    "full_name": {"title": "Full_Name", "type": "string"},
+                    "full_name": {"title": "Full Name", "type": "string"},
                 },
             },
             "Body_update_item_items__item_id__put": {
@@ -145,6 +145,30 @@ def test_openapi_schema():
         (
             "/items/5",
             None,
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["body", "item"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                    {
+                        "loc": ["body", "importance"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                ]
+            },
+        ),
+        (
+            "/items/5",
+            [],
             422,
             {
                 "detail": [

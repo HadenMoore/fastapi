@@ -121,7 +121,6 @@ Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 {!./src/python_types/tutorial004.py!}
 ```
 
-
 ## Declaring types
 
 You just saw the main place to declare type hints. As function parameters.
@@ -214,7 +213,6 @@ This means:
     * The keys of this `dict` are of type `str` (let's say, the name of each item).
     * The values of this `dict` are of type `float` (let's say, the price of each item).
 
-
 ### Classes as types
 
 You can also declare a class as the type of a variable.
@@ -235,10 +233,9 @@ And then, again, you get all the editor support:
 
 <img src="/img/python-types/image06.png">
 
-
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -255,12 +252,11 @@ Taken from the official Pydantic docs:
 ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic, check its docs</a>.
+    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the <a href="/tutorial/intro/" target="_blank">Tutorial - User Guide</a> (the next section).
-
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
 
 ## Type hints in **FastAPI**
 
@@ -280,9 +276,9 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the <a href="/tutorial/intro/" target="_blank">Tutorial - User Guide</a> (the next section).
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
 !!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" target="_blank">the "cheat sheet" from `mypy`</a>.
+    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.

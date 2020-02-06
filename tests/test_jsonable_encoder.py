@@ -3,7 +3,13 @@ from enum import Enum
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Schema, ValidationError
+from pydantic import BaseModel, ValidationError
+
+try:
+    from pydantic import Field
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic import Schema as Field
 
 
 class Person:
@@ -60,7 +66,7 @@ class ModelWithConfig(BaseModel):
 
 
 class ModelWithAlias(BaseModel):
-    foo: str = Schema(..., alias="Foo")
+    foo: str = Field(..., alias="Foo")
 
 
 def test_encode_class():
@@ -99,3 +105,18 @@ def test_encode_model_with_alias_raises():
 def test_encode_model_with_alias():
     model = ModelWithAlias(Foo="Bar")
     assert jsonable_encoder(model) == {"Foo": "Bar"}
+
+
+def test_custom_encoders():
+    class safe_datetime(datetime):
+        pass
+
+    class MyModel(BaseModel):
+        dt_field: safe_datetime
+
+    instance = MyModel(dt_field=safe_datetime.now())
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
+    )
+    assert encoded_instance["dt_field"] == instance.dt_field.isoformat()

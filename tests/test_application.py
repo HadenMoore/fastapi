@@ -7,7 +7,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/api_route": {
             "get": {
@@ -68,7 +68,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id"},
+                        "schema": {"title": "Item Id"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -98,7 +98,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -128,7 +128,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "integer"},
+                        "schema": {"title": "Item Id", "type": "integer"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -158,7 +158,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "number"},
+                        "schema": {"title": "Item Id", "type": "number"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -188,7 +188,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "boolean"},
+                        "schema": {"title": "Item Id", "type": "boolean"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -218,7 +218,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -244,11 +244,11 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Required Id",
-                "operationId": "get_path_param_required_id_path_param-required__item_id__get",
+                "operationId": "get_path_param_required_id_path_param_required__item_id__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -274,12 +274,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Min Length",
-                "operationId": "get_path_param_min_length_path_param-minlength__item_id__get",
+                "operationId": "get_path_param_min_length_path_param_minlength__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "minLength": 3,
                             "type": "string",
                         },
@@ -308,12 +308,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Max Length",
-                "operationId": "get_path_param_max_length_path_param-maxlength__item_id__get",
+                "operationId": "get_path_param_max_length_path_param_maxlength__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maxLength": 3,
                             "type": "string",
                         },
@@ -342,12 +342,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Min Max Length",
-                "operationId": "get_path_param_min_max_length_path_param-min_maxlength__item_id__get",
+                "operationId": "get_path_param_min_max_length_path_param_min_maxlength__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maxLength": 3,
                             "minLength": 2,
                             "type": "string",
@@ -377,12 +377,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Gt",
-                "operationId": "get_path_param_gt_path_param-gt__item_id__get",
+                "operationId": "get_path_param_gt_path_param_gt__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMinimum": 3.0,
                             "type": "number",
                         },
@@ -411,12 +411,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Gt0",
-                "operationId": "get_path_param_gt0_path_param-gt0__item_id__get",
+                "operationId": "get_path_param_gt0_path_param_gt0__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMinimum": 0.0,
                             "type": "number",
                         },
@@ -445,12 +445,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Ge",
-                "operationId": "get_path_param_ge_path_param-ge__item_id__get",
+                "operationId": "get_path_param_ge_path_param_ge__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "minimum": 3.0,
                             "type": "number",
                         },
@@ -479,12 +479,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Lt",
-                "operationId": "get_path_param_lt_path_param-lt__item_id__get",
+                "operationId": "get_path_param_lt_path_param_lt__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMaximum": 3.0,
                             "type": "number",
                         },
@@ -513,12 +513,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Lt0",
-                "operationId": "get_path_param_lt0_path_param-lt0__item_id__get",
+                "operationId": "get_path_param_lt0_path_param_lt0__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMaximum": 0.0,
                             "type": "number",
                         },
@@ -547,12 +547,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Le",
-                "operationId": "get_path_param_le_path_param-le__item_id__get",
+                "operationId": "get_path_param_le_path_param_le__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maximum": 3.0,
                             "type": "number",
                         },
@@ -581,12 +581,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Lt Gt",
-                "operationId": "get_path_param_lt_gt_path_param-lt-gt__item_id__get",
+                "operationId": "get_path_param_lt_gt_path_param_lt_gt__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMaximum": 3.0,
                             "exclusiveMinimum": 1.0,
                             "type": "number",
@@ -616,12 +616,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Le Ge",
-                "operationId": "get_path_param_le_ge_path_param-le-ge__item_id__get",
+                "operationId": "get_path_param_le_ge_path_param_le_ge__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maximum": 3.0,
                             "minimum": 1.0,
                             "type": "number",
@@ -651,12 +651,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Lt Int",
-                "operationId": "get_path_param_lt_int_path_param-lt-int__item_id__get",
+                "operationId": "get_path_param_lt_int_path_param_lt_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMaximum": 3.0,
                             "type": "integer",
                         },
@@ -685,12 +685,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Gt Int",
-                "operationId": "get_path_param_gt_int_path_param-gt-int__item_id__get",
+                "operationId": "get_path_param_gt_int_path_param_gt_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMinimum": 3.0,
                             "type": "integer",
                         },
@@ -719,12 +719,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Le Int",
-                "operationId": "get_path_param_le_int_path_param-le-int__item_id__get",
+                "operationId": "get_path_param_le_int_path_param_le_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maximum": 3.0,
                             "type": "integer",
                         },
@@ -753,12 +753,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Ge Int",
-                "operationId": "get_path_param_ge_int_path_param-ge-int__item_id__get",
+                "operationId": "get_path_param_ge_int_path_param_ge_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "minimum": 3.0,
                             "type": "integer",
                         },
@@ -787,12 +787,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Lt Gt Int",
-                "operationId": "get_path_param_lt_gt_int_path_param-lt-gt-int__item_id__get",
+                "operationId": "get_path_param_lt_gt_int_path_param_lt_gt_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "exclusiveMaximum": 3.0,
                             "exclusiveMinimum": 1.0,
                             "type": "integer",
@@ -822,12 +822,12 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Path Param Le Ge Int",
-                "operationId": "get_path_param_le_ge_int_path_param-le-ge-int__item_id__get",
+                "operationId": "get_path_param_le_ge_int_path_param_le_ge_int__item_id__get",
                 "parameters": [
                     {
                         "required": True,
                         "schema": {
-                            "title": "Item_Id",
+                            "title": "Item Id",
                             "maximum": 3.0,
                             "minimum": 1.0,
                             "type": "integer",
@@ -1037,7 +1037,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Query Param Required",
-                "operationId": "get_query_param_required_query_param-required_get",
+                "operationId": "get_query_param_required_query_param_required_get",
                 "parameters": [
                     {
                         "required": True,
@@ -1067,7 +1067,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Query Param Required Type",
-                "operationId": "get_query_param_required_type_query_param-required_int_get",
+                "operationId": "get_query_param_required_type_query_param_required_int_get",
                 "parameters": [
                     {
                         "required": True,

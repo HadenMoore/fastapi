@@ -50,7 +50,7 @@ And then, we can pass more parameters to `Query`. In this case, the `max_length`
 q: str = Query(None, max_length=50)
 ```
 
-This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema path operation.
+This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
 
 ## Add more validations
 
@@ -118,7 +118,7 @@ So, when you need to declare a value as required while using `Query`, you can us
 ```
 
 !!! info
-    If you hadn't seen that `...` before: it is a a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" target="_blank">part of Python and is called "Ellipsis"</a>.
+    If you hadn't seen that `...` before: it is a a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
 
 This will let **FastAPI** know that this parameter is required.
 

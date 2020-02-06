@@ -6,7 +6,7 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/index-weights/": {
             "post": {
@@ -27,7 +27,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Create Index Weights",
-                "operationId": "create_index_weights_index-weights__post",
+                "operationId": "create_index_weights_index_weights__post",
                 "requestBody": {
                     "content": {
                         "application/json": {

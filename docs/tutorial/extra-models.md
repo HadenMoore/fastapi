@@ -9,13 +9,13 @@ This is especially the case for user models, because:
 !!! danger
     Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
-    If you don't know, you will learn what a "password hash" is in the <a href="/tutorial/security/simple-oauth2/#password-hashing" target="_blank">security chapters</a>.
+    If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
 
 ## Multiple models
 
 Here's a general idea of how the models could look like with their password fields and the places where they are used:
 
-```Python hl_lines="8 10 15 21 23 32 34 39 40"
+```Python hl_lines="7 9  14   20 22  27 28  31 32 33  38 39"
 {!./src/extra_models/tutorial001.py!}
 ```
 
@@ -148,7 +148,7 @@ All the data conversion, validation, documentation, etc. will still work as norm
 
 That way, we can declare just the differences between the models (with plaintext `password`, with `hashed_password` and without password):
 
-```Python hl_lines="8 14 15 18 19 22 23"
+```Python hl_lines="7  13 14  17 18  21 22"
 {!./src/extra_models/tutorial002.py!}
 ```
 
@@ -158,7 +158,7 @@ You can declare a response to be the `Union` of two types, that means, that the 
 
 It will be defined in OpenAPI with `anyOf`.
 
-To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" target="_blank">`typing.Union`</a>:
+To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 ```Python hl_lines="1 14 15 18 19 20 33"
 {!./src/extra_models/tutorial003.py!}

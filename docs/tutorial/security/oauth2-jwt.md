@@ -18,11 +18,11 @@ It is not encrypted, so, anyone could recover the information from the contents.
 
 But it's signed. So, when you receive a token that you emitted, you can verify that you actually emitted it.
 
-That way, you can create a token with an expiration of, let's say, 1 week, and then, after a week, when the user comes back with the token, you know he's still signed into your system.
+That way, you can create a token with an expiration of, let's say, 1 week. And then when the user comes back the next day with the token, you know she/he is still signed into your system.
 
-And after a week, the token will be expired. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
+And after a week, the token will be expired and the user will not be authorized and will have to sign in again to get a new token. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
 
-If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" target="_blank">https://jwt.io</a>.
+If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
 ## Install `PyJWT`
 
@@ -40,7 +40,7 @@ Whenever you pass exactly the same content (exactly the same password) you get e
 
 But you cannot convert from the gibberish back to the password.
 
-### What for?
+### Why use password hashing
 
 If your database is stolen, the thief won't have your users' plaintext passwords, only the hashes.
 
@@ -131,7 +131,7 @@ If the token is invalid, return an HTTP error right away.
 {!./src/security/tutorial004.py!}
 ```
 
-## Update the `/token` path operation
+## Update the `/token` *path operation*
 
 Create a `timedelta` with the expiration time of the token.
 
@@ -140,7 +140,6 @@ Create a real JWT access token and return it.
 ```Python hl_lines="116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 {!./src/security/tutorial004.py!}
 ```
-
 
 ### Technical details about the JWT "subject" `sub`
 
@@ -166,7 +165,7 @@ The important thing to have in mind is that the `sub` key should have a unique i
 
 ## Check it
 
-Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You'll see the user interface like:
 
@@ -212,7 +211,7 @@ You can use them to add a specific set of permissions to a JWT token.
 
 Then you can give this token to a user directly or a third party, to interact with your API with a set of restrictions.
 
-You can learn how to use them and how they are integrated into **FastAPI** in the next chapter.
+You can learn how to use them and how they are integrated into **FastAPI** later in the **Advanced User Guide**.
 
 ## Recap
 
@@ -230,10 +229,8 @@ It gives you all the flexibility to choose the ones that fit your project the be
 
 And you can use directly many well maintained and widely used packages like `passlib` and `pyjwt`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
 
-But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness or security.
+But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness, or security.
 
 And you can use and implement secure, standard protocols, like OAuth2 in a relatively simple way.
 
-In the next (optional) section you can see how to extend this even further, using OAuth2 "scopes", for a more fine-grained permission system, following these same standards.
-
-OAuth2 with scopes (explained in the next section) is the mechanism used by many big authentication providers, like Facebook, Google, GitHub, Microsoft, Twitter, etc.
+You can learn more in the **Advanced User Guide** about how to use OAuth2 "scopes", for a more fine-grained permission system, following these same standards. OAuth2 with scopes is the mechanism used by many big authentication providers, like Facebook, Google, GitHub, Microsoft, Twitter, etc. to authorize third party applications to interact with their APIs on behalf of their users.

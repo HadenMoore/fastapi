@@ -1,24 +1,23 @@
 There is a project generator that you can use to get started, with a lot of the initial set up, security, database and first API endpoints already done for you.
 
-
 ## Full-Stack-FastAPI-PostgreSQL
 
-GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
-### Features
+### Full-Stack-FastAPI-PostgreSQL Features
 
 * Full **Docker** integration (Docker based).
 * Docker Swarm Mode deployment.
 * **Docker Compose** integration and optimization for local development
 * **Production ready** Python web server using Uvicorn and Gunicorn.
-* Python **[FastAPI](https://github.com/tiangolo/fastapi)** backend:
+* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
     * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
     * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
     * **Easy**: Designed to be easy to use and learn. Less time reading docs.
     * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
     * **Robust**: Get production-ready code. With automatic interactive documentation.
-    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
-    * [**Many other features**](https://github.com/tiangolo/fastapi) including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
+    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+    * Many other features including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
 * **Secure password** hashing by default.
 * **JWT token** authentication.
 * **SQLAlchemy** models (independent of Flask extensions, so they can be used with Celery workers directly).
@@ -49,26 +48,24 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" targ
 * Traefik integration, including Let's Encrypt **HTTPS** certificates automatic generation.
 * GitLab **CI** (continuous integration), including frontend and backend testing.
 
-
-
 ## Full-Stack-FastAPI-Couchbase
 
-GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
 
-### Features
+### Full-Stack-FastAPI-Couchbase Features
 
 * Full **Docker** integration (Docker based).
 * Docker Swarm Mode deployment.
 * **Docker Compose** integration and optimization for local development.
 * **Production ready** Python web server using Uvicorn and Gunicorn.
-* Python **[FastAPI](https://github.com/tiangolo/fastapi)** backend:
+* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
     * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
     * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
     * **Easy**: Designed to be easy to use and learn. Less time reading docs.
     * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
     * **Robust**: Get production-ready code. With automatic interactive documentation.
-    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
-    * [**Many other features**](https://github.com/tiangolo/fastapi) including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
+    * **Standards-based**: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+    * Many other features including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
 * **Secure password** hashing by default.
 * **JWT token** authentication.
 * **CORS** (Cross Origin Resource Sharing).
