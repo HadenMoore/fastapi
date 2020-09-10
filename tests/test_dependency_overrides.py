@@ -1,6 +1,8 @@
+from typing import Optional
+
 import pytest
 from fastapi import APIRouter, Depends, FastAPI
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 
@@ -36,7 +38,7 @@ app.include_router(router)
 client = TestClient(app)
 
 
-async def overrider_dependency_simple(q: str = None):
+async def overrider_dependency_simple(q: Optional[str] = None):
     return {"q": q, "skip": 5, "limit": 10}
 
 

@@ -1,9 +1,9 @@
+from collections import defaultdict
 from enum import Enum
+from pathlib import PurePath
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Set, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
-from fastapi.logger import logger
-from fastapi.utils import PYDANTIC_1
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -14,12 +14,9 @@ DictIntStrAny = Dict[Union[int, str], Any]
 def generate_encoders_by_class_tuples(
     type_encoder_map: Dict[Any, Callable]
 ) -> Dict[Callable, Tuple]:
-    encoders_by_classes: Dict[Callable, List] = {}
+    encoders_by_class_tuples: Dict[Callable, Tuple] = defaultdict(tuple)
     for type_, encoder in type_encoder_map.items():
-        encoders_by_classes.setdefault(encoder, []).append(type_)
-    encoders_by_class_tuples: Dict[Callable, Tuple] = {}
-    for encoder, classes in encoders_by_classes.items():
-        encoders_by_class_tuples[encoder] = tuple(classes)
+        encoders_by_class_tuples[encoder] += (type_,)
     return encoders_by_class_tuples
 
 
@@ -28,51 +25,44 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 def jsonable_encoder(
     obj: Any,
-    include: Union[SetIntStr, DictIntStrAny] = None,
-    exclude: Union[SetIntStr, DictIntStrAny] = set(),
+    include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+    exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     by_alias: bool = True,
-    skip_defaults: bool = None,
     exclude_unset: bool = False,
-    include_none: bool = True,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
-    if skip_defaults is not None:
-        logger.warning(  # pragma: nocover
-            "skip_defaults in jsonable_encoder has been deprecated in favor of "
-            "exclude_unset to keep in line with Pydantic v1, support for it will be "
-            "removed soon."
-        )
     if include is not None and not isinstance(include, set):
         include = set(include)
     if exclude is not None and not isinstance(exclude, set):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        encoder = getattr(obj.Config, "json_encoders", {})
+        encoder = getattr(obj.__config__, "json_encoders", {})
         if custom_encoder:
             encoder.update(custom_encoder)
-        if PYDANTIC_1:
-            obj_dict = obj.dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=bool(exclude_unset or skip_defaults),
-            )
-        else:  # pragma: nocover
-            obj_dict = obj.dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                skip_defaults=bool(exclude_unset or skip_defaults),
-            )
+        obj_dict = obj.dict(
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_none=exclude_none,
+            exclude_defaults=exclude_defaults,
+        )
+        if "__root__" in obj_dict:
+            obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
-            include_none=include_none,
+            exclude_none=exclude_none,
+            exclude_defaults=exclude_defaults,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if isinstance(obj, Enum):
         return obj.value
+    if isinstance(obj, PurePath):
+        return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):
@@ -84,14 +74,14 @@ def jsonable_encoder(
                     or (not isinstance(key, str))
                     or (not key.startswith("_sa"))
                 )
-                and (value is not None or include_none)
-                and ((include and key in include) or key not in exclude)
+                and (value is not None or not exclude_none)
+                and ((include and key in include) or not exclude or key not in exclude)
             ):
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    include_none=include_none,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -99,7 +89,7 @@ def jsonable_encoder(
                     value,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    include_none=include_none,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -115,7 +105,8 @@ def jsonable_encoder(
                     exclude=exclude,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    include_none=include_none,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -150,7 +141,8 @@ def jsonable_encoder(
         data,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
-        include_none=include_none,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
     )

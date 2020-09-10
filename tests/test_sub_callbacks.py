@@ -1,14 +1,16 @@
+from typing import Optional
+
 from fastapi import APIRouter, FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, HttpUrl
-from starlette.responses import JSONResponse
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
 
 class Invoice(BaseModel):
     id: str
-    title: str = None
+    title: Optional[str] = None
     customer: str
     total: float
 
@@ -36,7 +38,7 @@ subrouter = APIRouter()
 
 
 @subrouter.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
+def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
     """
     Create an invoice.
 
@@ -221,7 +223,7 @@ def test_get():
     response = client.post(
         "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Invoice received"}
 
 

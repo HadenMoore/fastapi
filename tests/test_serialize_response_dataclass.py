@@ -1,8 +1,8 @@
-from typing import List
+from typing import List, Optional
 
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic.dataclasses import dataclass
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -10,8 +10,8 @@ app = FastAPI()
 @dataclass
 class Item:
     name: str
-    price: float = None
-    owner_ids: List[int] = None
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)

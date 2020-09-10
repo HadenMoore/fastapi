@@ -1,7 +1,9 @@
+from typing import Optional
+
 import pytest
 from fastapi import Depends, FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, ValidationError, validator
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -16,7 +18,7 @@ class ModelC(ModelB):
 
 class ModelA(BaseModel):
     name: str
-    description: str = None
+    description: Optional[str] = None
     model_b: ModelB
 
     @validator("name")
@@ -127,13 +129,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_filter_sub_model():
     response = client.get("/model/modelA")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "modelA",
         "description": "model-a-desc",

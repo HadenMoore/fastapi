@@ -1,7 +1,7 @@
 import pytest
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
-from header_params.tutorial001 import app
+from docs_src.header_params.tutorial001 import app
 
 client = TestClient(app)
 
